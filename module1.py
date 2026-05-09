@@ -17,10 +17,14 @@ class Hospital:
                     f.write(
                         f"{each_patient.name}|{each_patient.age}|{each_patient.get_id()}\n"
                     )
+            self.decorator()
             print("patient data saved")
+            self.decorator()
 
         else:
+            self.decorator()
             print("patient file was not found , new patient file created")
+            self.decorator()
             with open(self.pf, "w") as f:
                 f.write("")
 
@@ -30,9 +34,13 @@ class Hospital:
                     f.write(
                         f"{each_doctor.name}|{each_doctor.age}|{each_doctor.spec}\n"
                     )
+            self.decorator()
             print("doctor data saved")
+            self.decorator()
         else:
+            self.decorator()
             print("doctor file was not found , new doctor file created")
+            self.decorator()
             with open(self.df, "w") as f:
                 f.write("")
 
@@ -42,9 +50,13 @@ class Hospital:
                     f.write(
                         f"{each_appointment.date}|{each_appointment.time}|{each_appointment.patient.name}|{each_appointment.doctor.name}\n"
                     )
+                self.decorator()
                 print("appointment data saved")
+                self.decorator()
         else:
+            self.decorator()
             print("appointment file was not found , new appointment file created")
+            self.decorator()
             with open(self.af, "w") as f:
                 f.write("")
 
@@ -56,9 +68,13 @@ class Hospital:
                     patient_object = Patient(patient_stripped[0], patient_stripped[1])
                     self.patient_list.append(patient_object)
                 Patient.counter = len(self.patient_list)
+                self.decorator()
                 print("Patient Data Loaded")
+                self.decorator()
         else:
+            self.decorator()
             print("No patient file exist")
+            self.decorator()
             return
 
         if os.path.exists(self.df):
@@ -69,9 +85,13 @@ class Hospital:
                         doctor_stripped[0], doctor_stripped[1], doctor_stripped[2]
                     )
                     self.doctor_list.append(doctor_object)
+                self.decorator()
                 print("Doctor Data Loaded")
+                self.decorator()
         else:
+            self.decorator()
             print("No doctor file exist")
+            self.decorator()
             return
 
         if os.path.exists(self.af):
@@ -85,9 +105,13 @@ class Hospital:
                         each_appointment[3],
                     )
                     self.appointment_list.append(appointment_object_recreated)
+                self.decorator()
                 print("appointment data loaded")
+                self.decorator()
         else:
+            self.decorator()
             print("No appointment file found")
+            self.decorator()
             return
 
     def register_patient(self):
@@ -96,11 +120,15 @@ class Hospital:
 
         for each_patient in self.patient_list:
             if each_patient.name == name:
+                self.decorator()
                 print("Patient already exist")
+                self.decorator()
                 return
 
         patient_to_be_appended = Patient(name, age)
+        self.decorator()
         print("Registration Done")
+        self.decorator()
         self.patient_list.append(patient_to_be_appended)
 
     def display_patient(self):
@@ -108,7 +136,9 @@ class Hospital:
             for each_patient in self.patient_list:
                 print(f"{each_patient.name}-{each_patient.age}-{each_patient.get_id()}")
         else:
+            self.decorator()
             print("not patients found")
+            self.decorator()
 
     def delete_patient(self):
         self.display_patient()
@@ -116,9 +146,13 @@ class Hospital:
         for each_patient in self.patient_list:
             if (each_patient.get_id()) == to_delete_patient:
                 self.patient_list.remove(each_patient)
+                self.decorator()
                 print("Patient Deleted")
+                self.decorator()
                 return
+        self.decorator()
         print("Patient not found")
+        self.decorator()
 
     def register_doctor(self):
         name = input("Write Doctor Name: ")
@@ -126,18 +160,24 @@ class Hospital:
         spec = input("Write doctor specalization: ")
         for each_doctor in self.doctor_list:
             if each_doctor.name == name:
+                self.decorator()
                 print("doctor with such name already exist")
+                self.decorator()
                 return
         doctor_object = Doctor(name, age, spec)
         self.doctor_list.append(doctor_object)
+        self.decorator()
         print("Registration Done")
+        self.decorator()
 
     def display_all_doctors(self):
         if self.doctor_list:
             for each_doctor in self.doctor_list:
                 print(f"{each_doctor.name}-{each_doctor.age}-{each_doctor.spec}")
         else:
+            self.decorator()
             print("no doctor found")
+            self.decorator()
 
     def delete_doctor(self):
         self.display_all_doctors()
@@ -145,9 +185,13 @@ class Hospital:
         for each_doctor in self.doctor_list:
             if (each_doctor.name) == name:
                 self.doctor_list.remove(each_doctor)
+                self.decorator()
                 print("Doctor Deleted")
+                self.decorator()
                 return
+        self.decorator()
         print("doctor not found")
+        self.decorator()
 
     def book_appointment(self):
         date = input("Write Appointment Date(DD/MM/YY): ")
@@ -159,26 +203,35 @@ class Hospital:
             for each_patient in self.patient_list:
                 if (each_patient.get_id()) == id:
                     selected_patient = each_patient
+                    self.decorator()
                     print("Patient selected")
+                    self.decorator()
                     print(
                         f"{each_patient.name}-{each_patient.age}-{each_patient.get_id()}"
                     )
                     break
             else:
+                self.decorator()
                 print("patient not found")
+                self.decorator()
                 return
+            
         else:
             name = input("Write patient name to select: ")
             for each_patient in self.patient_list:
                 if each_patient.name == name:
                     selected_patient = each_patient
+                    self.decorator()
                     print("Patient selected")
+                    self.decorator()
                     print(
                         f"{each_patient.name}-{each_patient.age}-{each_patient.get_id()}"
                     )
                     break
             else:
+                self.decorator()
                 print("patient not found")
+                self.decorator()
                 return
         user_choice = input("Show available doctors to select? (y/n): ").lower()
         if user_choice == "y":
@@ -187,22 +240,30 @@ class Hospital:
             for each_doctor in self.doctor_list:
                 if each_doctor.name == work_field:
                     selected_doctor = each_doctor
+                    self.decorator()
                     print("doctor selected")
+                    self.decorator()
                     print(f"{each_doctor.name}-{each_doctor.age}-{each_doctor.spec}")
                     break
             else:
+                self.decorator()
                 print("doctor not found")
+                self.decorator()
                 return
         else:
             name = input("Write doctor name to select: ")
             for each_doctor in self.doctor_list:
                 if each_doctor.name == name:
                     selected_doctor = each_doctor
+                    self.decorator()
                     print("doctor selected")
+                    self.decorator()
                     print(f"{each_doctor.name}-{each_doctor.age}-{each_doctor.spec}")
                     break
             else:
+                self.decorator()
                 print("doctor not found")
+                self.decorator()
                 return
 
         booked_appointment = Book_Appointment(
@@ -217,7 +278,9 @@ class Hospital:
                     f"{each_appointment.date}-{each_appointment.time}-{each_appointment.patient}-{each_appointment.doctor}"
                 )
         else:
+            self.decorator()
             print("no appointment found")
+            self.decorator()
 
     def cancel_appointment(self):
         self.display_appointments()
@@ -226,10 +289,14 @@ class Hospital:
         for each_appointment in self.appointment_list:
             if each_appointment.date == date and each_appointment.time == time:
                 self.appointment_list.remove(each_appointment)
+                self.decorator()
                 print("Appointment canceled")
+                self.decorator()
                 break
         else:
+            self.decorator()
             print("Appointment not found")
+            self.decorator()
             return
 
     def reset_data(self):
@@ -239,7 +306,12 @@ class Hospital:
             f.write("")
         with open(self.af, "w") as f:
             f.write("")
+        self.decorator()
         print("Reset Successfull")
+        self.decorator()
+    
+    def decorator(self):
+        print("="*40)
 
 
 class Person:
