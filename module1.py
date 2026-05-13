@@ -280,24 +280,22 @@ class Hospital:
         else:
             self.decorator()
             print("no appointment found")
-            self.decorator()
+            return False
+            
 
     def cancel_appointment(self):
-        self.display_appointments()
-        date = input("Write appointment date: ")
-        time = input("Write appointment time: ")
-        for each_appointment in self.appointment_list:
-            if each_appointment.date == date and each_appointment.time == time:
-                self.appointment_list.remove(each_appointment)
-                self.decorator()
-                print("Appointment canceled")
-                self.decorator()
-                break
-        else:
-            self.decorator()
-            print("Appointment not found")
-            self.decorator()
-            return
+        if (self.display_appointments()):
+            date = input("Write appointment date: ")
+            time = input("Write appointment time: ")
+            for each_appointment in self.appointment_list:
+                if each_appointment.date == date and each_appointment.time == time:
+                    self.appointment_list.remove(each_appointment)
+                    self.decorator()
+                    print("Appointment canceled")
+                    self.decorator()
+                    break
+       
+            
 
     def reset_data(self):
         with open(self.pf, "w") as f:
